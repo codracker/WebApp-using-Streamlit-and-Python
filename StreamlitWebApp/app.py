@@ -12,7 +12,7 @@ from sklearn.metrics import precision_score, recall_score
 
 def main():
     st.title("Binary classification Web App")
-    st.sidbar.title("Binary classification Web App")
+    st.sidebar.title("Binary classification Web App")
     st.markdown("Are your mushrooms edible or poisonous? 🍄")
     st.sidebar.markdown("Are your mushrooms edible or poisonous? 🍄")
 
@@ -60,7 +60,7 @@ def main():
 
 
         metrics = st.sidebar.multiselect("What metrics to wish to plot?", ("Confusion Matrix", "ROC Curve", "Precision-Recall Curve"))
-        if st.sidebar.button("Classify", key - 'classify'):
+        if st.sidebar.button("Classify", key = 'classify'):
             st.subheader("Support Vector Machine(SVM)")
             model = SVC(C = C, kernel = kernel, gamma = gamma)
             model.fit(x_train, y_train)
@@ -78,7 +78,7 @@ def main():
 
 
         metrics = st.sidebar.multiselect("What metrics to wish to plot?", ("Confusion Matrix", "ROC Curve", "Precision-Recall Curve"))
-        if st.sidebar.button("Classify", key - 'classify'):
+        if st.sidebar.button("Classify", key = 'classify'):
             st.subheader("Logistic Regression Results")
             model = LogisticRegression(C = C, max_iter= max_iter)
             model.fit(x_train, y_train)
@@ -92,10 +92,10 @@ def main():
     if classifier == 'Random Forest':
         st.sidebar.subheader("Model Hyperparameters")
         n_estimators = st.sidebar.number_input("The number of trees  Forest", 100, 5000, step = 10, key = 'n_estimators')
-        max_depth = st.sidebar.number("The max depth of the tree", 1, 20, step = 1, key = 'max_depth')
+        max_depth = st.sidebar.number_input("The max depth of the tree", 1, 20, step = 1, key = 'max_depth')
         bootstrap = st.sidebar.radio("Bootstrap samples when building trees", ('True', 'False'), key = 'bootstrap')
         metrics = st.sidebar.multiselect("What metrics to wish to plot?", ("Confusion Matrix", "ROC Curve", "Precision-Recall Curve"))
-        if st.sidebar.button("Classify", key - 'classify'):
+        if st.sidebar.button("Classify", key = 'classify'):
             st.subheader("Random Forest Results")
             model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth, bootstrap=bootstrap, n_jobs=-1)
             model.fit(x_train, y_train)
@@ -111,3 +111,10 @@ def main():
     if st.sidebar.checkbox("Show raw data", False):      #inorder to keep default as unchecked, so settig the flag to False
         st.subheader("Mushrooms Data Set(Classification)")   #else true , it will load_data. Also if description is to be added then use markdown
         st.write(df)
+
+
+
+
+
+if __name__ == "__main__":
+  main()
